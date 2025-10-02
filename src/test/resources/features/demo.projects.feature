@@ -12,10 +12,11 @@ Feature: Inicio de sesión en Rahul Shetty Academy
 
   Examples:
   |usario|                password|      rolePrincipal|   roleNormal|
-#  |rahulshettyacademy|  learning|        Admin|           Student|
-  |rahulshettyacademy|  learning|        Admin|           Teacher|
-  |rahulshettyacademy|  learning|        Admin|           Consultant|
- # |rahulshettyacademy|  learning|        User|
+  #|rahulshettyacademy|  learning|        Admin|           Student|
+  #|rahulshettyacademy|  learning|        Admin|           Teacher|
+  |rahulshettyacademy|  learning|        Admin|        Consultant|
+  #|rahulshettyacademy|  learning|        User|            Consultant|
+
 
 
 

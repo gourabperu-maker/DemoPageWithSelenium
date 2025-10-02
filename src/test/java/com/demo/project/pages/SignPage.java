@@ -26,6 +26,17 @@ public class SignPage extends utilitiesScreenshot {
     @FindBy(css ="select.form-control option")
     private List<WebElement> rolesNormal;
 
+    @FindBy(css ="btn btn-success")
+    private List<WebElement> txtOkey;
+
+    @FindBy(xpath ="//input[@type='checkbox' and @name='terms']")
+    private WebElement tYc;
+
+    @FindBy(css =" input[name='signin']")
+    private WebElement signIn;
+
+
+
 
 
     public SignPage(WebDriver driver){    // constructor
@@ -55,6 +66,7 @@ public class SignPage extends utilitiesScreenshot {
                 break;
                   }
             }
+
      }
 
     public void seleccionarRoleNormal(String RoleNo) {
@@ -64,15 +76,42 @@ public class SignPage extends utilitiesScreenshot {
                 rolesno.click();
                 takeScreenshot("Evidence user Role Normal");
                 break;
-            }
+               }
+
+
         }
-        try{
-            Thread.sleep(8000);
-        }
-        catch (Exception e) {
-            e.getMessage();
-        }
+    }
+
+
+    public void termsYconditions(String arg0){
+        tYc.click();
+        takeScreenshot("Evidence from mark Terms & Conditions");
+    }
+
+    public void buttonSignIn(String arg0){
+        signIn.click();
+        takeScreenshot("Evidence from Signing.. page");
+    }
+
+
+    public void signInExito(){
 
     }
+
+/*
+            try{
+                Thread.sleep(3000);
+            }
+            catch (Exception e) {
+                e.getMessage();
+            }
+
+*/
+
+
+
+
+
+
 
     }

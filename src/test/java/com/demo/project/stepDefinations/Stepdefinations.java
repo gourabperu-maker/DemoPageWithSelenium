@@ -35,10 +35,12 @@ public class Stepdefinations {
 
     @And("marco {string}")
     public void marco(String arg0) {
+        signPage.termsYconditions( arg0);
     }
 
     @And("hago click en {string}")
-    public void hagoClickEn(String arg0) {
+    public void hagoClickEn(String arg0 ) {
+        signPage.buttonSignIn(arg0);
     }
 
     @Then("debo ver que el inicio de sesión es exitoso")
@@ -49,14 +51,8 @@ public class Stepdefinations {
     public void elSistemaRedirigeALaPáginaPrincipalOMuestraLosElementosDelDashboard() {
     }
 
-    @And("no marco la casilla de términos \\(o la dejo según el caso)")
-    public void noMarcoLaCasillaDeTérminosOLaDejoSegúnElCaso() {
-    }
-
-    @Then("debo ver el mensaje de error {string}")
-    public void deboVerElMensajeDeError(String arg0) {
     }
 
 
 
-}
+
