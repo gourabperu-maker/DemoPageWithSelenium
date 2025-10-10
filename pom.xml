@@ -8,33 +8,39 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <selenium.version>4.28.0</selenium.version>
+        <cucumber-java.version>7.20.1</cucumber-java.version>
+        <cucumber-junit.version>7.20.1</cucumber-junit.version>
+        <jnuit.version>4.13.2</jnuit.version>
+
     </properties>
+
+
     <dependencies>
-        <!--  Selenium  -->
+        <!--  Selenium para manejo de browsers -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.28.0</version>
+            <version>${selenium.version}</version>
         </dependency>
-        <!--  Cucumber  -->
+        <!--  Cucumber  BDD @Given,@when,@Then,@And-->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.20.1</version>
+            <version>${cucumber-java.version}</version>
         </dependency>
-        <!--         👉 Es el puente entre Cucumber y JUnit. -->
-        <!--         Permitir usar un runner JUnit (clases con @RunWith(Cucumber.class) o con JUnit 5, @Cucumber test). -->
+        <!-- Permite usar un runner JUnit (clases con @RunWith(Cucumber.class) o con JUnit 5, @Cucumber test). -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.20.1</version>
+            <version>${cucumber-junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--  JUnit 4  -->
+        <!--  JUnit 4  para ejecutar pruebas -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${jnuit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

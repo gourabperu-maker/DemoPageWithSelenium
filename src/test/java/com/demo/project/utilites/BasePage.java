@@ -1,28 +1,35 @@
-package org.example.utilites;
+package com.demo.project.utilites;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 
-public class utilitiesScreenshot {
+public class BasePage {
 
+// declaration attribute
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    // Constructor: inicializa PageFactory y espera explícita
-    public utilitiesScreenshot(WebDriver driver) {
+
+
+// Constructor: BasePage driver & PageFactory method 'this' to put value in driver & add explicit function
+    public BasePage(WebDriver driver) {
         this.driver = driver;
-        //this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // esperar 10 segundos
         PageFactory.initElements(driver, this);
     }
 
-
+// Take screenshot
     protected String takeScreenshot(String nombre) {
         String carpeta = "src/test/resources/ScreenShots/";
         try {
@@ -38,4 +45,22 @@ public class utilitiesScreenshot {
             throw new RuntimeException("Error al guardar screenshot: " + e.getMessage());
         }
     }
+
+// ComboSelection Method By Parameter
+   protected void selecionarComboPorParametro(WebElement element, String parametro){
+        wait.until(ExpectedConditions.visibilityOf((element))); //espera por hasta que elemento esta visble
+        Select select = new Select(element);
+        select.selectByVisibleText(parametro);
+    }
+
+
+// ComboSelection Method By value
+   protected void selecionarComboPorValue(WebElement element, String value){
+        wait.until(ExpectedConditions.visibilityOf((element))); //espera por hasta que elemento esta visble
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
+
+
+
 }

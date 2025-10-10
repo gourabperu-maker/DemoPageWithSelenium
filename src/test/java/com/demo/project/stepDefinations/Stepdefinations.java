@@ -10,12 +10,14 @@ import io.cucumber.java.en.When;
 
 public class Stepdefinations {
 
-    private SignPage signPage;
+    private SignPage signPage;  //Declare an instantiated variable
 
-    @Given("que estoy en la página de login {string}")
-    public void queEstoyEnLaPáginaDeLogin(String pagina) {
+    @Given("que estoy en la página de login")
+    public void queEstoyEnLaPáginaDeLogin() {
+        // First create a object to give value in driver which come from hook class or instantiate in 'Stepdefinations page' then create a constructor 'SignPage' for his functions
         signPage = new SignPage(Hooks.driver);
-        signPage.getPagina(pagina);
+        // call 'SignPage' for his specific functions
+        signPage.getPagina();
     }
 
     @When("ingreso el usuario {string} y la contraseña {string}")
@@ -25,6 +27,7 @@ public class Stepdefinations {
 
     @And("selecciono el {string} según la UI")
     public void seleccionoElSegúnLaUI(String rolePrincipal) {
+
         signPage.selecionarRolePrincipal(rolePrincipal);
     }
 
@@ -33,14 +36,14 @@ public class Stepdefinations {
         signPage.seleccionarRoleNormal(roleNormal);
     }
 
-    @And("marco {string}")
-    public void marco(String arg0) {
-        signPage.termsYconditions( arg0);
+    @And("marco I Agree to the terms and conditions")
+    public void marco() {
+        signPage.termsYconditions();
     }
 
-    @And("hago click en {string}")
-    public void hagoClickEn(String arg0 ) {
-        signPage.buttonSignIn(arg0);
+    @And("hago click en Sign In")
+    public void hagoClickEn() {
+        signPage.buttonSignIn();
     }
 
     @Then("debo ver que el inicio de sesión es exitoso")
@@ -51,7 +54,7 @@ public class Stepdefinations {
     public void elSistemaRedirigeALaPáginaPrincipalOMuestraLosElementosDelDashboard() {
     }
 
-    }
+}
 
 
 

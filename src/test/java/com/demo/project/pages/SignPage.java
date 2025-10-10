@@ -1,15 +1,18 @@
 package com.demo.project.pages;
-import org.example.utilites.utilitiesScreenshot;
+import com.demo.project.utilites.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-// variable y locators, constructor, metodo
-public class SignPage extends utilitiesScreenshot {
-    private WebDriver driver;
-    String urlPageSignIn = "https://rahulshettyacademy.com/loginpagePractise/";
+
+   // Declaration variable, then add locators, then add constructor and finally add  method
+
+public class SignPage extends BasePage {
+    private WebDriver driverVariable;
+    String urlPage = "https://rahulshettyacademy.com/loginpagePractise/";
+
 
     @FindBy(xpath ="//input[@id='username' and @class='form-control']" )
     private WebElement txtusario;
@@ -26,6 +29,9 @@ public class SignPage extends utilitiesScreenshot {
     @FindBy(css ="select.form-control option")
     private List<WebElement> rolesNormal;
 
+    @FindBy(css = "select.form-control")
+    WebElement selectRoleOtroforma;
+
     @FindBy(css ="btn btn-success")
     private List<WebElement> txtOkey;
 
@@ -39,15 +45,16 @@ public class SignPage extends utilitiesScreenshot {
 
 
 
-    public SignPage(WebDriver driver){    // constructor
+    public SignPage(WebDriver driver){
         super(driver);
-        this.driver = driver;
+        this.driverVariable = driver;
         PageFactory.initElements(driver, this);
     }
 
 
-    public void getPagina(String pagina){
-        driver.get(pagina);
+    public void getPagina(){
+        //driverVariable.get(urlPage);
+        driver.get(urlPage);
         takeScreenshot("Evidence from Sign in page");
     }
 
@@ -57,7 +64,7 @@ public class SignPage extends utilitiesScreenshot {
         takeScreenshot("Evidence user credentiales");
 
     }
-
+// Select Role principal value come from test data (Admin / User)
     public void selecionarRolePrincipal(String Role){
         for(WebElement roles : listRoles){
             if (roles.getText().trim().equals(Role)){
@@ -69,7 +76,11 @@ public class SignPage extends utilitiesScreenshot {
 
      }
 
+ // Select Role normal value come from test data (student / teacher / consultant)
+
     public void seleccionarRoleNormal(String RoleNo) {
+  /*
+        We can call using 1st way, where we need to click, then find a parent parameter then compare role values with test data
         txtBox.click();
         for (WebElement rolesno : rolesNormal) {
             if(rolesno.getText().trim().equals(RoleNo)){
@@ -79,16 +90,22 @@ public class SignPage extends utilitiesScreenshot {
                }
 
 
-        }
+        2nd way we can create a method by parameter in basepage and reuse this method when need
+        selecionarComboPorParametro(selectRoleOtroforma,RoleNo);
+
+   */
+        //3rd way we can create a method by value in basepage and reuse this method when need
+          selecionarComboPorValue(selectRoleOtroforma,RoleNo);
+
     }
 
 
-    public void termsYconditions(String arg0){
+    public void termsYconditions(){
         tYc.click();
         takeScreenshot("Evidence from mark Terms & Conditions");
     }
 
-    public void buttonSignIn(String arg0){
+    public void buttonSignIn(){
         signIn.click();
         takeScreenshot("Evidence from Signing.. page");
     }
