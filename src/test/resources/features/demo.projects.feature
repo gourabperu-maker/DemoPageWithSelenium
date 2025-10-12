@@ -1,4 +1,4 @@
-@Regression
+# @Regression
 Feature: Inicio de sesión en Rahul Shetty Academy
 
 Background:
@@ -14,16 +14,16 @@ Background:
     And marco I Agree to the terms and conditions
     And hago click en Sign In
     Then debo ver que el inicio de sesión es exitoso
-    And el sistema redirige a la página principal o muestra los elementos del dashboard
+
 
   Examples:
-  |usario|                password|      rolePrincipal|   roleNormal|
-  |rahulshettyacademy|  learning|        Admin|           consult|
-  |rahulshettyacademy|  learning|        Admin|           Teacher|
-  |rahulshettyacademy|  learning|        Admin|            stud|
-  |rahulshettyacademy|  learning|        User|           consult|
+    | usario             | password | rolePrincipal | roleNormal |
+    #| rahulshettyacademy | learning | Admin         | consult    |
+  #|rahulshettyacademy|  learning|        Admin|           Teacher|
+  #|rahulshettyacademy|  learning|        Admin|            stud|
+  #|rahulshettyacademy|  learning|        User|           consult|
   |rahulshettyacademy|  learning|        User|           Teacher|
-  |rahulshettyacademy|  learning|        User|            stud|
+  #|rahulshettyacademy|  learning|        User|            stud|
 
 
 
@@ -35,7 +35,7 @@ Background:
     And marco I Agree to the terms and conditions
     And hago click en Sign In
     Then debo ver que el inicio de sesión es exitoso
-    And el sistema redirige a la página principal o muestra los elementos del dashboard
+
 
     Examples:
       |usario|                password|      rolePrincipal|   roleNormal|

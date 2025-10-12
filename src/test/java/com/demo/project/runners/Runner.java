@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features= "src/test/resources/features",
         glue="com.demo.project", // name of principal directory
-        tags="@Regression",  //  tags utilize for execute specific test cases {"",""}
+        tags="@Test001",  //  tags utilize for execute specific test cases {" and "}
         plugin={"pretty", "html:src/test/resources/report/report.html"}, // good UI & route where the report is saved
         monochrome = false // no weird characters, no colors, just plain text in the console
 

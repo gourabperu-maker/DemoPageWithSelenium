@@ -1,9 +1,13 @@
 package com.demo.project.pages;
+import com.demo.project.hooks.Hooks;
 import com.demo.project.utilites.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 
@@ -41,14 +45,20 @@ public class SignPage extends BasePage {
     @FindBy(css =" input[name='signin']")
     private WebElement signIn;
 
+    @FindBy(xpath ="//button[@type='button' and @id='okayBtn']")
+    private WebElement okeyModalButton;
+
+    @FindBy(xpath ="//div[@class='modal-content']")
+    private WebElement roleUserModal;
 
 
 
 
-    public SignPage(WebDriver driver){
-        super(driver);
-        this.driverVariable = driver;
-        PageFactory.initElements(driver, this);
+    // Constructor
+    public SignPage(){
+        super(Hooks.driver);
+        this.driverVariable = Hooks.driver;
+        PageFactory.initElements(Hooks.driver, this);
     }
 
 
@@ -64,21 +74,27 @@ public class SignPage extends BasePage {
         takeScreenshot("Evidence user credentiales");
 
     }
-// Select Role principal value come from test data (Admin / User)
-    public void selecionarRolePrincipal(String Role){
-        for(WebElement roles : listRoles){
-            if (roles.getText().trim().equals(Role)){
+// **** Select Role principal value come from test data (Admin / User)
+    public void selecionarRolePrincipal(String Role) {
+        for (WebElement roles : listRoles) {
+            String text = roles.getText().trim();
+            if (text.equals(Role)) {
                 roles.click();
+
+                if (text.equals("User")) {
+                    wait.until(ExpectedConditions.visibilityOf(okeyModalButton));
+                    okeyModalButton.click();
+                    wait.until(ExpectedConditions.visibilityOf(roleUserModal));
+                }
                 takeScreenshot("Evidence user Principal Role");
                 break;
-                  }
             }
+        }
+    }
 
-     }
+ // **** Select Role normal value come from test data (student / teacher / consultant)
 
- // Select Role normal value come from test data (student / teacher / consultant)
-
-    public void seleccionarRoleNormal(String RoleNo) {
+    public void seleccionarRoleNormal(String RoleNormal) {
   /*
         We can call using 1st way, where we need to click, then find a parent parameter then compare role values with test data
         txtBox.click();
@@ -93,9 +109,13 @@ public class SignPage extends BasePage {
         2nd way we can create a method by parameter in basepage and reuse this method when need
         selecionarComboPorParametro(selectRoleOtroforma,RoleNo);
 
-   */
+
         //3rd way we can create a method by value in basepage and reuse this method when need
-          selecionarComboPorValue(selectRoleOtroforma,RoleNo);
+        selecionarComboPorValue(selectRoleOtroforma,RoleNo);
+
+   */
+        wait.until(ExpectedConditions.visibilityOf(selectRoleOtroforma));
+        selecionarComboPorParametro(selectRoleOtroforma,RoleNormal);
 
     }
 
@@ -103,32 +123,11 @@ public class SignPage extends BasePage {
     public void termsYconditions(){
         tYc.click();
         takeScreenshot("Evidence from mark Terms & Conditions");
+        scrollarElemento(signIn);
     }
 
     public void buttonSignIn(){
         signIn.click();
         takeScreenshot("Evidence from Signing.. page");
     }
-
-
-    public void signInExito(){
-
-    }
-
-/*
-            try{
-                Thread.sleep(3000);
-            }
-            catch (Exception e) {
-                e.getMessage();
-            }
-
-*/
-
-
-
-
-
-
-
     }

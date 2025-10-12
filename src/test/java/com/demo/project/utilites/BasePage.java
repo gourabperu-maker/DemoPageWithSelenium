@@ -1,8 +1,5 @@
 package com.demo.project.utilites;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -18,7 +15,7 @@ public class BasePage {
 
 // declaration attribute
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    public WebDriverWait wait;
 
 
 
@@ -60,7 +57,11 @@ public class BasePage {
         Select select = new Select(element);
         select.selectByValue(value);
     }
-
+// Add scroll Function
+    protected void scrollarElemento(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
 
 
 }
